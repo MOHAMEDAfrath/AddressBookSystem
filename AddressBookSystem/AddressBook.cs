@@ -127,6 +127,35 @@ namespace AddressBookSystem
 
         }
         /// <summary>
+        /// Deletes the details.
+        /// </summary>
+        public static void DeleteDetails()
+        {
+            if (contactList.Count > 0)
+            {
+                Console.WriteLine("Enter the first name of the person to be deleted:");
+                string target = Console.ReadLine();
+                foreach (var member in contactList)
+                {
+                    if (member.firstname.ToLower() == target.ToLower())
+                    {
+                        contactList.Remove(member);
+                        Console.WriteLine("Deleted Contact : " + member.firstname);
+                        break;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not Available.");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Your Address book is empty!");
+            }
+        }
+        /// <summary>
         /// Lists the contact people.
         /// </summary>
         public static void ListContactPeople()
