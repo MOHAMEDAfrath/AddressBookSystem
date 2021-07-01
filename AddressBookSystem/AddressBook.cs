@@ -32,6 +32,8 @@ namespace AddressBookSystem
             newMember.State = Console.ReadLine();
             Console.Write("Enter Pincode: ");
             newMember.pincode = Console.ReadLine();
+            Console.Write("Enter Email Id: ");
+            newMember.emailId = Console.ReadLine();
             contactList.Add(newMember);
         }
         /// <summary>
@@ -46,6 +48,7 @@ namespace AddressBookSystem
             Console.WriteLine("City: " + member.City);
             Console.WriteLine("State: " + member.State);
             Console.WriteLine("Pincode: " + member.pincode);
+            Console.WriteLine("Email Id: " + member.emailId);
             Console.WriteLine("");
 
         }
@@ -71,7 +74,8 @@ namespace AddressBookSystem
                             Console.WriteLine("Enter 5 to Change City ");
                             Console.WriteLine("Enter 6 to Change State ");
                             Console.WriteLine("Enter 7 to Change Pincode ");
-                            Console.WriteLine("Enter 8 to Exit ");
+                            Console.WriteLine("Enter 8 to Change Email Id ");
+                            Console.WriteLine("Enter 9 to Exit ");
                             int option = Convert.ToInt32(Console.ReadLine());
                             switch (option)
                             {
@@ -104,6 +108,10 @@ namespace AddressBookSystem
                                     member.pincode = Console.ReadLine();
                                     break;
                                 case 8:
+                                    Console.WriteLine("Enter the New Email Id: ");
+                                    member.emailId= Console.ReadLine();
+                                    break;
+                                case 9:
                                     return;
 
                             }
