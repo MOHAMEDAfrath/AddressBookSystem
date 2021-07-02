@@ -16,7 +16,8 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter 2 to Print the Member in contact list");
                 Console.WriteLine("Enter 3 to Modify the contact details");
                 Console.WriteLine("Enter 4 to Delete the contact details");
-                Console.WriteLine("Enter 5 to Exit");
+                Console.WriteLine("Enter 5 to Add the address book");
+                Console.WriteLine("Enter 6 to Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -32,7 +33,11 @@ namespace AddressBookSystem
                     case 4:
                         AddressBook.DeleteDetails();
                         break;
+                    
                     case 5:
+                        AddressBook.PrintAddressBook();
+                        break;
+                    case 6:
                         return;
 
                 }

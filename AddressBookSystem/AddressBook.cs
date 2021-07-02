@@ -11,12 +11,29 @@ namespace AddressBookSystem
     /// </summary>
     class AddressBook
     {
-        public static List<NewMember> contactList = new List<NewMember>();
+
+        public static List<NewMember> contactList;
+        public static Dictionary<string, List<NewMember>> addressbooknames = new Dictionary<string, List<NewMember>>();
+        public static void PrintAddressBook()
+        {
+            foreach(KeyValuePair<string, List<NewMember>> kvp in addressbooknames){
+                foreach (var addressbookname in kvp.Value)
+               {
+                    Console.WriteLine("The Address book names:");
+                    Console.WriteLine("{0}",kvp.Key);
+                    PrintPerson(addressbookname);
+
+                }
+            }
+            //ListContactPeople();
+        }
+
         /// <summary>
         /// Adds the person.
         /// </summary>
         public static void AddaPerson()
         {
+            
             NewMember newMember = new NewMember();
             Console.Write("Enter First Name: ");
             newMember.firstname = Console.ReadLine();
@@ -34,7 +51,32 @@ namespace AddressBookSystem
             newMember.pincode = Console.ReadLine();
             Console.Write("Enter Email Id: ");
             newMember.emailId = Console.ReadLine();
-            contactList.Add(newMember);
+           
+            Console.WriteLine("Enter the address book name: ");
+            string addressbookname = Console.ReadLine();
+            if(addressbooknames.Count > 0)
+            {
+                bool exists = addressbooknames.ContainsKey(addressbookname);
+                if (exists)
+                {
+                    Console.WriteLine("Already Exists!");
+                }
+                else
+                {
+                    contactList = new List<NewMember>();
+                    contactList.Add(newMember);
+                    addressbooknames.Add(addressbookname, contactList);
+                }
+   
+
+            }
+            else
+            {
+                contactList = new List<NewMember>();
+                contactList.Add(newMember);
+                addressbooknames.Add(addressbookname, contactList);
+            }
+            
         }
         /// <summary>
         /// Prints the person.
@@ -57,9 +99,10 @@ namespace AddressBookSystem
         /// </summary>
         public static void Modify()
         {
-            if(contactList.Count > 0) { 
-            Console.WriteLine("Enter the First name of the contact to modify:");
-            string target = Console.ReadLine();
+            if (contactList.Count > 0)
+            {
+                Console.WriteLine("Enter the First name of the contact to modify:");
+                string target = Console.ReadLine();
                 foreach (var member in contactList)
                 {
                     if (member.firstname.ToLower() == target.ToLower())
@@ -109,7 +152,7 @@ namespace AddressBookSystem
                                     break;
                                 case 8:
                                     Console.WriteLine("Enter the New Email Id: ");
-                                    member.emailId= Console.ReadLine();
+                                    member.emailId = Console.ReadLine();
                                     break;
                                 case 9:
                                     return;
@@ -125,7 +168,7 @@ namespace AddressBookSystem
                     }
 
                 }
-                
+
 
             }
             else
@@ -171,12 +214,13 @@ namespace AddressBookSystem
             if (contactList.Count > 0)
             {
                 Console.WriteLine("The Contact List : ");
-                foreach (var member in contactList)
+                foreach (var member in contactList )
                 {
                     PrintPerson(member);
                 }
-
             }
+
+
             else
             {
 
@@ -184,6 +228,8 @@ namespace AddressBookSystem
                 return;
             }
         }
-
     }
+           
+
+    
 }
