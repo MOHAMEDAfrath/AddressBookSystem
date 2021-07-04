@@ -5,6 +5,7 @@ namespace AddressBookSystem
 {
     class Program
     {
+        //Declared Dictionary
         public static Dictionary<string, List<NewMember>> addressbooknames = new Dictionary<string, List<NewMember>>();
         static void Main(string[] args)
         {
@@ -17,6 +18,7 @@ namespace AddressBookSystem
             {
                 Console.WriteLine("Enter the address book name: ");
                 string addressbookname = Console.ReadLine();
+                ///obj creation
                 AddressBook addressBook = new AddressBook();
                 Console.WriteLine("Enter the no of contacts in the address book: ");
                 int noofcontatcs = Convert.ToInt32(Console.ReadLine());
@@ -51,13 +53,15 @@ namespace AddressBookSystem
                 }
                 else
                 {
+
+                    ///adding details to the dictionary
                     addressbooknames.Add(addressbookname, addressBook.contactList);
                 }
 
 
                 noofbooksadded++;
             }
-
+            //using keyvalue to get value of the key.
             foreach (KeyValuePair<string, List<NewMember>> kvp in addressbooknames)
             {
                 Console.WriteLine("The address Books are:{0}", kvp.Key);
