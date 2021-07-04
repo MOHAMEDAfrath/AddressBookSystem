@@ -12,26 +12,21 @@ namespace AddressBookSystem
     class AddressBook
     {
 
-        public static List<NewMember> contactList;
-        public static Dictionary<string, List<NewMember>> addressbooknames = new Dictionary<string, List<NewMember>>();
-        public static void PrintAddressBook()
+        public List<NewMember> contactList;
+       
+        public AddressBook() 
         {
-            foreach(KeyValuePair<string, List<NewMember>> kvp in addressbooknames){
-                foreach (var addressbookname in kvp.Value)
-               {
-                    Console.WriteLine("The Address book names:");
-                    Console.WriteLine("{0}",kvp.Key);
-                    PrintPerson(addressbookname);
-
-                }
-            }
-            //ListContactPeople();
+            contactList = new List<NewMember>();
         }
+      
 
+
+
+       
         /// <summary>
         /// Adds the person.
         /// </summary>
-        public static void AddaPerson()
+        public void AddaPerson()
         {
             
             NewMember newMember = new NewMember();
@@ -51,37 +46,14 @@ namespace AddressBookSystem
             newMember.pincode = Console.ReadLine();
             Console.Write("Enter Email Id: ");
             newMember.emailId = Console.ReadLine();
+            contactList.Add(newMember);
            
-            Console.WriteLine("Enter the address book name: ");
-            string addressbookname = Console.ReadLine();
-            if(addressbooknames.Count > 0)
-            {
-                bool exists = addressbooknames.ContainsKey(addressbookname);
-                if (exists)
-                {
-                    Console.WriteLine("Already Exists!");
-                }
-                else
-                {
-                    contactList = new List<NewMember>();
-                    contactList.Add(newMember);
-                    addressbooknames.Add(addressbookname, contactList);
-                }
-   
-
-            }
-            else
-            {
-                contactList = new List<NewMember>();
-                contactList.Add(newMember);
-                addressbooknames.Add(addressbookname, contactList);
-            }
             
         }
         /// <summary>
         /// Prints the person.
         /// </summary>
-        public static void PrintPerson(NewMember member)
+        public void PrintPerson(NewMember member)
         {
             Console.WriteLine("First Name: " + member.firstname);
             Console.WriteLine("Last Name: " + member.lastname);
@@ -97,7 +69,7 @@ namespace AddressBookSystem
         /// <summary>
         /// Modifies the details.
         /// </summary>
-        public static void Modify()
+        public void Modify()
         {
             if (contactList.Count > 0)
             {
@@ -162,10 +134,7 @@ namespace AddressBookSystem
                         }
 
                     }
-                    else
-                    {
-                        Console.WriteLine("Please enter the valid name!");
-                    }
+                    
 
                 }
 
@@ -180,7 +149,7 @@ namespace AddressBookSystem
         /// <summary>
         /// Deletes the details.
         /// </summary>
-        public static void DeleteDetails()
+        public  void DeleteDetails()
         {
             if (contactList.Count > 0)
             {
@@ -195,10 +164,7 @@ namespace AddressBookSystem
                         break;
 
                     }
-                    else
-                    {
-                        Console.WriteLine("Not Available.");
-                    }
+                    
                 }
             }
             else
@@ -209,7 +175,7 @@ namespace AddressBookSystem
         /// <summary>
         /// Lists the contact people.
         /// </summary>
-        public static void ListContactPeople()
+        public void ListContactPeople()
         {
             if (contactList.Count > 0)
             {
