@@ -18,11 +18,6 @@ namespace AddressBookSystem
         {
             contactList = new List<NewMember>();
         }
-      
-
-
-
-
        
         /// <summary>
         /// Adds the person.
@@ -54,11 +49,13 @@ namespace AddressBookSystem
             }
             else
             {
-                
+                //Using lambda function to get firstname and lastname of the current contact
                 var firstname = contactList.Select(x => x.firstname);
                 var lastname = contactList.Select(x => x.lastname);
+                //using for each along with Zip enumeration and create tuple to iterate with two list at the same time 
                 foreach(var members in firstname.Zip(lastname, Tuple.Create))
                 {
+                    //checks for duplicate and displays a error message.
                     if (members.Item1 == newMember.firstname && members.Item2 == newMember.lastname)
                     {
                         found = true;
@@ -70,7 +67,7 @@ namespace AddressBookSystem
                 }
                 if (found)
                 {
-                    Console.WriteLine("Already Exists Cant Add");
+                    Console.WriteLine("*******Already Exists Cant Add*******");
                 }
                 else
                 {
@@ -217,7 +214,6 @@ namespace AddressBookSystem
                     PrintPerson(member);
                 }
             }
-
 
             else
             {

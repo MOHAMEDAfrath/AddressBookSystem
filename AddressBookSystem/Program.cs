@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AddressBookSystem
 {
@@ -64,13 +65,33 @@ namespace AddressBookSystem
 
                 noofbooksadded++;
             }
-            //using keyvalue to get value of the key.
-            foreach (KeyValuePair<string, List<NewMember>> kvp in addressbooknames)
+            Console.WriteLine("Enter 1 to search the contacts based on city name and state");
+            if (Console.ReadLine() == "1")
             {
-                Console.WriteLine("The address Books are:{0}", kvp.Key);
-
+                Console.WriteLine("Enter City name");
+                string cityname = Console.ReadLine();
+                Console.WriteLine("Enter state name");
+                string state = Console.ReadLine();
+                //using keyvalue to get value of the key.
+                foreach (KeyValuePair<string, List<NewMember>> kvp in addressbooknames)
+                {
+                    Console.WriteLine("The address Books is:{0}", kvp.Key);
+                    Console.WriteLine("The Contact List from {0} or {1}",cityname,state);
+                    Search(kvp.Value, cityname, state);
+                }
             }
+
            
+        }
+        //to search based on city or state
+        public static void Search(List<NewMember> list,string cityname,string state)
+        {
+            AddressBook addressbook = new AddressBook();
+           foreach(NewMember member in list.FindAll(x=>(x.City.ToLower() == cityname || x.State.ToLower() == state)).ToList())
+            {
+                addressbook.PrintPerson(member);
+            }
+          
         }
     }
 }
