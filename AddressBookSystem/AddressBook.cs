@@ -22,13 +22,14 @@ namespace AddressBookSystem
 
 
 
+
        
         /// <summary>
         /// Adds the person.
         /// </summary>
-        public void AddaPerson()
+        public bool AddaPerson()
         {
-            
+            bool found = false;
             NewMember newMember = new NewMember();
             Console.Write("Enter First Name: ");
             newMember.firstname = Console.ReadLine();
@@ -46,9 +47,40 @@ namespace AddressBookSystem
             newMember.pincode = Console.ReadLine();
             Console.Write("Enter Email Id: ");
             newMember.emailId = Console.ReadLine();
-            contactList.Add(newMember);
-           
-            
+            var name = newMember.firstname.ToLower() + newMember.lastname.ToLower();
+            if (contactList.Count == 0)
+            {
+                contactList.Add(newMember);
+            }
+            else
+            {
+                
+                var firstname = contactList.Select(x => x.firstname);
+                var lastname = contactList.Select(x => x.lastname);
+                foreach(var members in firstname.Zip(lastname, Tuple.Create))
+                {
+                    if (members.Item1 == newMember.firstname && members.Item2 == newMember.lastname)
+                    {
+                        found = true;
+                        break;
+                        
+                    }
+                    
+                        
+                }
+                if (found)
+                {
+                    Console.WriteLine("Already Exists Cant Add");
+                }
+                else
+                {
+                    contactList.Add(newMember);
+                }
+                
+
+            }
+
+            return found;
         }
         /// <summary>
         /// Prints the person.

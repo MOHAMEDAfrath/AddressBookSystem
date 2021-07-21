@@ -26,10 +26,13 @@ namespace AddressBookSystem
                 while (noofcontatcs != 0)
                 {
                     Console.WriteLine("Enter the details of contact to be added: ");
-                    addressBook.AddaPerson();
-                    noofcontatcs--;
-                    Console.WriteLine(" ");
-                    addressBook.ListContactPeople();
+                    bool found = addressBook.AddaPerson();
+                    if (!found)
+                    {
+                        noofcontatcs--;
+                        Console.WriteLine(" ");
+                        addressBook.ListContactPeople();
+                    }
                 }
                 Console.WriteLine("To Modify Details Press 1/ To delete a contact detail Press 2/Else Press 0");
                 int option = Convert.ToInt32(Console.ReadLine());
