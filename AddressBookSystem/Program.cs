@@ -101,6 +101,8 @@ namespace AddressBookSystem
                     var result = kvp.Value.GroupBy(mem => mem.City.ToLower());
                     foreach (var val in result)
                     {
+                        Console.WriteLine("The number of Contacts in {0} city is {1}", val.Key, val.Count());
+
                         foreach (NewMember member in val)
                         {
                             if (cities.ContainsKey(member.City.ToLower()))
@@ -134,6 +136,7 @@ namespace AddressBookSystem
                     var result = kvp.Value.GroupBy(mem => mem.State.ToLower());
                     foreach (var val in result)
                     {
+                        Console.WriteLine("The number of Contacts in {0} state is {1}",val.Key,val.Count());
                         foreach (NewMember member in val)
                         {
                             if (states.ContainsKey(member.State.ToLower()))
@@ -162,6 +165,8 @@ namespace AddressBookSystem
                 PrintDictionaries(cities, "City");
                 Console.WriteLine("   ");
                 PrintDictionaries(states, "States");
+                DisplayCount();
+                
 
             }
         }
@@ -169,7 +174,7 @@ namespace AddressBookSystem
         public static void PrintDictionaries(Dictionary<string, List<NewMember>> temp,string group)
         {
             AddressBook addressbook = new AddressBook();
-            Console.WriteLine("**** Printing the entire contact in the address book grouped by {0}",group);
+            Console.WriteLine("**** Printing the entire contact in the address book grouped by {0}*****",group);
             foreach (KeyValuePair<string, List<NewMember>> kvp in temp)
             {
                 Console.WriteLine(" ");
@@ -179,6 +184,22 @@ namespace AddressBookSystem
                     addressbook.PrintPerson(member);
                 }
             }
+        }
+        //displays the count based on cities and states
+        public static void DisplayCount()
+        {
+            Console.WriteLine("The counts based on states and cities");
+            Console.WriteLine("Group by city");
+            foreach (KeyValuePair<string, List<NewMember>> kvp in cities)
+            {
+                Console.WriteLine("The city {0} have {1} contacts",kvp.Key,kvp.Value.Count);
+            }
+            Console.WriteLine("Group by state");
+            foreach (KeyValuePair<string, List<NewMember>> kvp in states)
+            {
+                Console.WriteLine("The state {0} have {1} contacts", kvp.Key, kvp.Value.Count);
+            }
+
         }
         //to search based on city or state
         public static void Search(List<NewMember> list, string cityname, string state)
