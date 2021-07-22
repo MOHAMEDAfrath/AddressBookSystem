@@ -201,6 +201,25 @@ namespace AddressBookSystem
                 Console.WriteLine("Your Address book is empty!");
             }
         }
+        //to search based on city or state
+        public static void Search(List<NewMember> list, string cityname, string state)
+        {
+            AddressBook addressbook = new AddressBook();
+            var member = list.FindAll(x => (x.City.ToLower() == cityname || x.State.ToLower() == state));
+            if (member.Count > 0)
+            {
+                foreach (var members in member)
+                {
+                    addressbook.PrintPerson(members);
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("No contacts present");
+            }
+
+        }
         /// <summary>
         /// Lists the contact people.
         /// </summary>
