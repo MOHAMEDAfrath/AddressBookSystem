@@ -89,7 +89,7 @@ namespace AddressBookSystem
                 {
                     Console.WriteLine("The address Books is:{0}", kvp.Key);
                     Console.WriteLine("The Contact List from {0} or {1}", cityname, state);
-                    Search(kvp.Value, cityname, state);
+                    AddressBook.Search(kvp.Value, cityname, state);
                 }
             }
             else if (options == "2")
@@ -99,32 +99,38 @@ namespace AddressBookSystem
                 foreach (KeyValuePair<string, List<NewMember>> kvp in addressbooknames)
                 {
                     var result = kvp.Value.GroupBy(mem => mem.City.ToLower());
-                    foreach (var val in result)
-                    {
-                        foreach (NewMember member in val)
+                    if (result != null) {
+                        foreach (var val in result)
                         {
-                            if (cities.ContainsKey(member.City.ToLower()))
+                            foreach (NewMember member in val)
                             {
-                                foreach (KeyValuePair<string, List<NewMember>> key in cities)
+                                if (cities.ContainsKey(member.City.ToLower()))
                                 {
-                                    if (key.Key.ToLower() == member.City.ToLower())
+                                    foreach (KeyValuePair<string, List<NewMember>> key in cities)
                                     {
-                                        key.Value.Add(member);
+                                        if (key.Key.ToLower() == member.City.ToLower())
+                                        {
+                                            key.Value.Add(member);
 
+                                        }
                                     }
+
                                 }
+                                else
+                                {
+                                    Program program = new Program();
+                                    cityname.Add(member);
+                                    cities.Add(member.City.ToLower(), cityname);
 
-                            }
-                            else
-                            {
-                                Program program = new Program();
-                                cityname.Add(member);
-                                cities.Add(member.City.ToLower(), cityname);
-
+                                }
                             }
                         }
 
 
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Contacts");
                     }
 
                 }
@@ -132,31 +138,37 @@ namespace AddressBookSystem
                 foreach (KeyValuePair<string, List<NewMember>> kvp in addressbooknames)
                 {
                     var result = kvp.Value.GroupBy(mem => mem.State.ToLower());
-                    foreach (var val in result)
-                    {
-                        foreach (NewMember member in val)
+                    if (result != null) {
+                        foreach (var val in result)
                         {
-                            if (states.ContainsKey(member.State.ToLower()))
+                            foreach (NewMember member in val)
                             {
-                                foreach (KeyValuePair<string, List<NewMember>> key in states)
+                                if (states.ContainsKey(member.State.ToLower()))
                                 {
-                                    if (key.Key.ToLower() == member.State.ToLower())
+                                    foreach (KeyValuePair<string, List<NewMember>> key in states)
                                     {
-                                        key.Value.Add(member);
+                                        if (key.Key.ToLower() == member.State.ToLower())
+                                        {
+                                            key.Value.Add(member);
 
+                                        }
                                     }
+
                                 }
+                                else
+                                {
+                                    Program program = new Program();
+                                    statename.Add(member);
+                                    states.Add(member.State.ToLower(), statename);
 
-                            }
-                            else
-                            {
-                                Program program = new Program();
-                                statename.Add(member);
-                                states.Add(member.State.ToLower(), statename);
-
+                                }
                             }
                         }
 
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Contacts");
                     }
                 }
                 PrintDictionaries(cities, "City");
@@ -179,16 +191,6 @@ namespace AddressBookSystem
                     addressbook.PrintPerson(member);
                 }
             }
-        }
-        //to search based on city or state
-        public static void Search(List<NewMember> list, string cityname, string state)
-        {
-            AddressBook addressbook = new AddressBook();
-            foreach (NewMember member in list.FindAll(x => (x.City.ToLower() == cityname || x.State.ToLower() == state)).ToList())
-            {
-                addressbook.PrintPerson(member);
-            }
-
         }
         
        
