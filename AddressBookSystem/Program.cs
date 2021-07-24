@@ -182,12 +182,25 @@ namespace AddressBookSystem
 
             }else if(options == "3")
             {
+                AddressBook addressBook = new AddressBook();
                 Console.WriteLine("Enter 1 to sort based on firstname");
+                Console.WriteLine("Enter 2 to sort based on cityname");
+                Console.WriteLine("Enter 3 to sort based on statename");
+                Console.WriteLine("Enter 4 to sort based on PinCode");
                 string option = Console.ReadLine();
                 if (option == "1")
                 {
-                    AddressBook addressBook = new AddressBook();
                     addressBook.SortBasedOnNames(addressbooknames);
+                }else if(option == "2")
+                {
+                    addressBook.SortBasedOnCityName(addressbooknames);
+                }
+                else if (option == "3")
+                {
+                    addressBook.SortBasedOnStateName(addressbooknames);
+                }else if(option == "4")
+                {
+                    addressBook.SortBasedOnPinCode(addressbooknames);
                 }
             }
         }

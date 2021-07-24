@@ -241,6 +241,64 @@ namespace AddressBookSystem
             }    
 
         }
+        //sorts based on city name
+        public void SortBasedOnCityName(Dictionary<string, List<NewMember>> addressbooknames)
+        {
+            SortedList<string, NewMember> sorted = null;
+            foreach (KeyValuePair<string, List<NewMember>> kvp in addressbooknames)
+            {
+                Console.WriteLine("The sorted contacts based on City Name in address book {0} is", kvp.Key);
+                sorted = new SortedList<string, NewMember>();
+                foreach (var member in kvp.Value)
+                {
+                    sorted.Add(member.City, member);
+                }
+                foreach (var member in sorted)
+                {
+                    PrintPerson(member.Value);
+
+                }
+
+            }
+        }
+        //sorts based on state name
+        public void SortBasedOnStateName(Dictionary<string, List<NewMember>> addressbooknames)
+        {
+            SortedList<string, NewMember> sorted = null;
+            foreach (KeyValuePair<string, List<NewMember>> kvp in addressbooknames)
+            {
+                Console.WriteLine("The sorted contacts based on State Name in address book {0} is", kvp.Key);
+                sorted = new SortedList<string, NewMember>();
+                foreach (var member in kvp.Value)
+                {
+                    sorted.Add(member.State, member);
+                }
+                foreach (var member in sorted)
+                {
+                    PrintPerson(member.Value);
+
+                }
+            }
+        }
+        //sorts based on pincode
+        public void SortBasedOnPinCode(Dictionary<string, List<NewMember>> addressbooknames)
+        {
+            SortedList<string, NewMember> sorted = null;
+            foreach (KeyValuePair<string, List<NewMember>> kvp in addressbooknames)
+            {
+                Console.WriteLine("The sorted contacts based on PinCode in address book {0} is", kvp.Key);
+                sorted = new SortedList<string, NewMember>();
+                foreach (var member in kvp.Value)
+                {
+                    sorted.Add(member.pincode, member);
+                }
+                foreach (var member in sorted)
+                {
+                    PrintPerson(member.Value);
+
+                }
+            }
+        }
         /// <summary>
         /// Lists the contact people.
         /// </summary>
