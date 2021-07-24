@@ -234,8 +234,7 @@ namespace AddressBookSystem
                 }
                 foreach (var member in sorted)
                 {
-                    PrintPerson(member.Value);
-
+                    Console.WriteLine(member.Value.ToString());
                 }
 
             }    
@@ -256,7 +255,7 @@ namespace AddressBookSystem
                 }
                 foreach (var member in sorted)
                 {
-                    PrintPerson(member.Value);
+                    Console.WriteLine(member.Value.ToString());
 
                 }
 
@@ -276,7 +275,7 @@ namespace AddressBookSystem
                 }
                 foreach (var member in sorted)
                 {
-                    PrintPerson(member.Value);
+                    Console.WriteLine(member.Value.ToString());
 
                 }
             }
@@ -295,7 +294,7 @@ namespace AddressBookSystem
                 }
                 foreach (var member in sorted)
                 {
-                    PrintPerson(member.Value);
+                    Console.WriteLine(member.Value.ToString());
 
                 }
             }
