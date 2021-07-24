@@ -77,6 +77,7 @@ namespace AddressBookSystem
             }
             Console.WriteLine("Enter 1 to search the contacts based on city name and state");
             Console.WriteLine("Enter 2 to print contact list based on city name and states");
+            Console.WriteLine("Enter 3 to print contact list based on sorting contacts");
             string options = Console.ReadLine();
             if (options == "1")
             {
@@ -179,6 +180,15 @@ namespace AddressBookSystem
                 DisplayCount();
                 
 
+            }else if(options == "3")
+            {
+                Console.WriteLine("Enter 1 to sort based on firstname");
+                string option = Console.ReadLine();
+                if (option == "1")
+                {
+                    AddressBook addressBook = new AddressBook();
+                    addressBook.SortBasedOnNames(addressbooknames);
+                }
             }
         }
         //print state and country dictionaries

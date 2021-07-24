@@ -220,6 +220,27 @@ namespace AddressBookSystem
             }
 
         }
+        //Sort using generics sortedList
+        public void SortBasedOnNames(Dictionary<string, List<NewMember>> addressbooknames)
+        {
+            SortedList<string, NewMember> sorted = null; 
+            foreach (KeyValuePair<string, List<NewMember>> kvp in addressbooknames)
+            {
+                Console.WriteLine("The sorted contacts in address book {0} is",kvp.Key);
+                sorted = new SortedList<string, NewMember>();
+                foreach (var member in kvp.Value)
+                {
+                    sorted.Add(member.firstname, member);
+                }
+                foreach (var member in sorted)
+                {
+                    PrintPerson(member.Value);
+
+                }
+
+            }    
+
+        }
         /// <summary>
         /// Lists the contact people.
         /// </summary>
