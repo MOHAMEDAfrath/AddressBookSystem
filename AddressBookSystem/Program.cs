@@ -202,6 +202,14 @@ namespace AddressBookSystem
                 {
                     addressBook.SortBasedOnPinCode(addressbooknames);
                 }
+            }else if(options == "4")
+            {
+                Console.WriteLine("Write to the file");
+                IOOperations.GetDictionary(addressbooknames);
+            }else if(options == "5")
+            {
+                Console.WriteLine("Read from the file");
+                IOOperations.ReadAddressBook();
             }
         }
         //print state and country dictionaries
