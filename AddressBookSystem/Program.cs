@@ -79,7 +79,7 @@ namespace AddressBookSystem
             Console.WriteLine("Enter 2 to print contact list based on city name and states");
             Console.WriteLine("Enter 3 to print contact list based on sorting contacts");
             Console.WriteLine("Enter 4 to write contact list into the file");
-            Console.WriteLine("Enter 5 to read from a csv file");
+            Console.WriteLine("Enter 5 to write to a csv file");
             string options = Console.ReadLine();
             if (options == "1")
             {
@@ -210,7 +210,8 @@ namespace AddressBookSystem
                 IOOperations.GetDictionary(addressbooknames);
             }else if(options == "5")
             {
-              
+                Console.WriteLine("Written to csv file");
+                IOOperations.CSVOperations(addressbooknames);
             }
         }
         //print state and country dictionaries
