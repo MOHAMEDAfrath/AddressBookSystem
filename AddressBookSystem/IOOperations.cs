@@ -83,6 +83,18 @@ namespace AddressBookSystem
 
 
             }
+            using(var reader = new StreamReader(export))
+            using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.InvariantCulture))
+            {
+                var records = csv.GetRecords<NewMember>().ToList();
+                foreach(NewMember member in records)
+                {
+                    Console.WriteLine(member.ToString());
+                }
+
+            }
+
+               
         
         }
     }
