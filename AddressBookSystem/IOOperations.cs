@@ -1,5 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -79,14 +80,13 @@ namespace AddressBookSystem
                     };
 
                 }
-                 
-
 
             }
             //Reads from CSV
             using(var reader = new StreamReader(export))
             using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.InvariantCulture))
             {
+                
                 var records = csv.GetRecords<NewMember>().ToList();
                 foreach(NewMember member in records)
                 {
@@ -97,6 +97,30 @@ namespace AddressBookSystem
                     }
                     Console.WriteLine(member.ToString());
                 }
+                //Json serialze to add object to json file
+                string jsonFilepath = @"C:\Users\afrat\source\repos\AddressBookSystem\AddressBookSystem\AddressBook.json";
+                JsonSerializer serializer = new JsonSerializer();
+                List<NewMember> list = new List<NewMember>();
+                using (StreamWriter sw = new StreamWriter(jsonFilepath))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    //serializer to serialize to json
+                    serializer.Serialize(writer, records);
+                }
+                Console.WriteLine("Written to JSON");
+                //Reading from json file
+                List<NewMember> json = JsonConvert.DeserializeObject<List<NewMember>>(File.ReadAllText(jsonFilepath));
+                foreach (var member in json)
+                {
+                    //To remove header in Json file
+                    if (member.firstname == "firstname")
+                    {
+                        Console.WriteLine(" ");
+                        continue;
+                    }
+                    Console.WriteLine(member.ToString());
+                }
+
 
             }
 
