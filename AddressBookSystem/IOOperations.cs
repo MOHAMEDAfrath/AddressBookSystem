@@ -14,6 +14,7 @@ namespace AddressBookSystem
         //file writes the addressbook in a file
         public static void GetDictionary(Dictionary<string, List<NewMember>> addressbooknames)
         {
+            File.WriteAllText(filepath,string.Empty);
             foreach (KeyValuePair<string, List<NewMember>> kvp in addressbooknames)
             {
                 list = new List<string>();
