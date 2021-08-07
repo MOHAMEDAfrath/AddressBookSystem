@@ -9,7 +9,7 @@ namespace AddressBookSystem
     /// <summary>
     /// Address Book System
     /// </summary>
-    class AddressBook
+   public class AddressBook
     {
 
         public List<NewMember> contactList;

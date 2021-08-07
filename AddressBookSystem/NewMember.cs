@@ -9,7 +9,7 @@ namespace AddressBookSystem
     /// <summary>
     /// Getters and setter for getting setting details.
     /// </summary>
-    class NewMember
+    public class NewMember
     {
         public string AddressBookName
         {
