@@ -93,5 +93,17 @@ namespace JSONServer_Test
             var result = JsonConvert.DeserializeObject<NewMember>(response.Content);
             Assert.AreEqual(result.firstname, "Tyle");
         }
+        //deletes the given contact id
+        [TestMethod]
+        public void Delete_TestMethod()
+        {
+            RestRequest request = new RestRequest("/contacts/6", Method.DELETE);
+            IRestResponse response = client.Execute(request);
+            //check count after deletion
+            IRestResponse response1 = Retrieve();
+            List<NewMember> result = JsonConvert.DeserializeObject<List<NewMember>>(response1.Content);
+            Assert.AreEqual(5, result.Count);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
     }
 }
